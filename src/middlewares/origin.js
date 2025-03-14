@@ -1,12 +1,11 @@
 const checkSession = (req, res, next) => {
-    const headerAuth = req.headers.authorizaion ||  "";
-    console.log(req)
-    //TODO BEARER
-    const token = headerAuth.split( ' ').pop() //1111
-    if(!token){
-        res.status(405);
-        res.send({error: "no tienes token"});
-    }else{
+    const headerAuth = req.headers.authorization || "";
+    console.log(req);
+
+    const token = headerAuth.split(' ').pop();
+    if (!token) {
+        res.status(405).send({ error: "No tienes token" });
+    } else {
         next();
     }
 };
